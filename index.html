@@ -1,121 +1,142 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AERYMC SMP Việt Nam</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AERYMC Forum</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
   <style>
     body {
-      background: #0d0d12 url('https://i.imgur.com/yEXE8Mt.png') no-repeat center top fixed;
+      background: #0f0f14 url('https://i.imgur.com/MEqY9rl.png') no-repeat center top fixed;
       background-size: cover;
-      color: white;
-      font-family: 'Inter', sans-serif;
+      font-family: Inter, sans-serif;
+      color: #e5e5e5;
     }
 
     .glass {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .btn-orange {
-      background: linear-gradient(90deg, #ff9900, #ff7f2a);
-      padding: 10px 22px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: 0.2s;
+    .forum-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      transition: 0.15s;
     }
 
-    .btn-orange:hover {
-      opacity: 0.8;
-    }
-
-    .card {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #ffaa44;
+    .forum-box:hover {
+      border-color: #ffae42;
+      transform: translateY(-3px);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <div class="w-full glass fixed top-0 left-0 z-50 px-8 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold tracking-wide">
-      ⭐ AERYMC SMP VIỆT NAM
-    </div>
+  <!-- HEADER -->
+  <header class="glass p-5 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
+    <h1 class="text-xl font-semibold">⭐ AERYMC — Diễn Đàn Minecraft Việt Nam</h1>
 
-    <div class="space-x-6 hidden md:block">
-      <a href="#" class="hover:text-orange-300">Trang chủ</a>
-      <a href="#" class="hover:text-orange-300">Tin tức</a>
-      <a href="#" class="hover:text-orange-300">Nạp tiền</a>
-      <a href="#" class="hover:text-orange-300">Câu hỏi</a>
-    </div>
+    <nav class="space-x-6 hidden md:block">
+      <a href="#" class="hover:text-yellow-300">Trang chủ</a>
+      <a href="#forum" class="hover:text-yellow-300">Diễn đàn</a>
+      <a href="#" class="hover:text-yellow-300">Sự kiện</a>
+      <a href="#" class="hover:text-yellow-300">Ủng hộ</a>
+    </nav>
 
-    <div class="space-x-3">
-      <button class="btn-orange">Đăng nhập</button>
-      <button class="btn-orange">Đăng ký</button>
+    <div>
+      <button class="px-4 py-2 rounded-lg bg-yellow-500 font-semibold">Đăng nhập</button>
     </div>
+  </header>
+
+  <div class="pt-28 max-w-6xl mx-auto px-6">
+
+    <!-- WELCOME -->
+    <section class="text-center">
+      <h2 class="text-4xl font-bold">DIỄN ĐÀN CỘNG ĐỒNG SMP VIỆT NAM</h2>
+      <p class="mt-3 text-gray-300">
+        Trao đổi • Hướng dẫn • Sự kiện • Tuyển staff • Chia sẻ kinh nghiệm
+      </p>
+    </section>
+
+    <!-- FORUM CATEGORIES -->
+    <section id="forum" class="mt-12 grid md:grid-cols-3 gap-6">
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Thông báo quan trọng</h3>
+        <p class="text-gray-300 mt-2">Cập nhật phiên bản, sự kiện, bảo trì server…</p>
+      </div>
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Hướng dẫn người chơi</h3>
+        <p class="text-gray-300 mt-2">Tân thủ, cách kiếm tiền, lệnh cần biết…</p>
+      </div>
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Khu vực thảo luận</h3>
+        <p class="text-gray-300 mt-2">Góp ý – báo lỗi – nói chuyện chung.</p>
+      </div>
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Chợ mua bán</h3>
+        <p class="text-gray-300 mt-2">Mua bán đồ, giao dịch item, mở shop.</p>
+      </div>
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Giới thiệu bản thân</h3>
+        <p class="text-gray-300 mt-2">Khu vực làm quen, kết bạn, team-up.</p>
+      </div>
+
+      <div class="forum-box p-5">
+        <h3 class="text-xl font-bold text-yellow-300">Tuyển Staff</h3>
+        <p class="text-gray-300 mt-2">Ứng tuyển Helper / Mod / Builder.</p>
+      </div>
+
+    </section>
+
+    <!-- LATEST POSTS -->
+    <section class="mt-16">
+      <h2 class="text-3xl font-bold mb-6">📝 Bài viết mới nhất</h2>
+
+      <div class="space-y-4">
+
+        <div class="forum-box p-4 flex justify-between">
+          <div>
+            <h4 class="font-bold text-lg text-yellow-300">[EVENT] Đua top tháng 12</h4>
+            <p class="text-gray-400">Bởi <strong>Admin</strong> • 2 giờ trước</p>
+          </div>
+          <p class="text-gray-400">12 bình luận</p>
+        </div>
+
+        <div class="forum-box p-4 flex justify-between">
+          <div>
+            <h4 class="font-bold text-lg text-yellow-300">Tân thủ nên bắt đầu ở đâu?</h4>
+            <p class="text-gray-400">Bởi <strong>MinhG</strong> • 5 giờ trước</p>
+          </div>
+          <p class="text-gray-400">4 bình luận</p>
+        </div>
+
+        <div class="forum-box p-4 flex justify-between">
+          <div>
+            <h4 class="font-bold text-lg text-yellow-300">Mua gỗ thông giá tốt</h4>
+            <p class="text-gray-400">Bởi <strong>PhucMC</strong> • 1 ngày trước</p>
+          </div>
+          <p class="text-gray-400">7 bình luận</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 mb-10 text-center text-gray-400 glass p-6 rounded-xl">
+      © 2025 — AERYMC Diễn Đàn Minecraft — Thiết kế bởi bạn
+    </footer>
+
   </div>
-
-  <div class="pt-32 text-center">
-    <h1 class="text-4xl font-extrabold">MINECRAFT SMP VIỆT NAM</h1>
-    <p class="mt-4 text-gray-300 text-lg">Server sinh tồn Việt Nam – Cộng đồng thân thiện – Sự kiện mỗi tuần</p>
-
-    <div class="mt-6 space-x-4">
-      <button class="btn-orange">IP: play.aerymc.vn</button>
-      <button class="btn-orange">Tham Gia Discord</button>
-    </div>
-  </div>
-
-  <!-- FEATURE CARDS -->
-  <div class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-6 px-6">
-
-    <div class="card p-5">
-      <img src="https://i.imgur.com/u0RFG2g.png" class="rounded-lg mb-3" />
-      <h2 class="text-xl font-bold">Sự Kiện Top Cày SMP</h2>
-      <p class="text-gray-300 mt-2">Đua top cày cuốc nhận quà Rank + Xu cực khủng.</p>
-    </div>
-
-    <div class="card p-5">
-      <img src="https://i.imgur.com/3swQy2O.png" class="rounded-lg mb-3" />
-      <h2 class="text-xl font-bold">Sự Kiện Donate</h2>
-      <p class="text-gray-300 mt-2">Top donate tháng nhận vật phẩm giới hạn và tag VIP.</p>
-    </div>
-
-    <div class="card p-5">
-      <img src="https://i.imgur.com/uq6ScsS.png" class="rounded-lg mb-3" />
-      <h2 class="text-xl font-bold">Server Luôn Ổn Định</h2>
-      <p class="text-gray-300 mt-2">Anti-cheat mạnh – Staff xử lý nhanh – Uptime 24/7.</p>
-    </div>
-
-  </div>
-
-  <!-- COMMUNITY -->
-  <div class="max-w-6xl mx-auto mt-20 px-6">
-    <h2 class="text-3xl font-bold mb-4">Cộng đồng AERYMC</h2>
-
-    <div class="grid md:grid-cols-4 gap-4">
-      <div class="card p-4 text-center">📘 Fanpage</div>
-      <div class="card p-4 text-center">💬 Discord</div>
-      <div class="card p-4 text-center">🎥 YouTube</div>
-      <div class="card p-4 text-center">🎵 TikTok</div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="mt-24 py-12 text-center glass">
-    <p class="text-gray-400">© 2025 AERYMC SMP – Thiết kế bởi bạn</p>
-  </footer>
 
 </body>
 </html>
