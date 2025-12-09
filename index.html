@@ -1,269 +1,465 @@
-<!DOCTYPE html>
+<!--
+AERYMC VN - Single-file landing page (HTML + CSS)
+- Thiết kế: giao diện tối (dark) + neon vàng-cam, layout giống mẫu gta5online nhưng dành cho server Minecraft.
+- Cách dùng: Lưu file này thành `index.html`. Tạo thư mục `images/` cạnh file và đặt ảnh sau (tên file):
+    - hero.jpg          (banner chính - lớn)
+    - feature1.jpg      (card tính năng 1)
+    - feature2.jpg      (card tính năng 2)
+    - feature3.jpg      (card tính năng 3)
+    - news1.jpg         (ảnh bài viết lớn)
+    - news2.jpg         (ảnh bài nhỏ)
+    - news3.jpg
+    - bg-pattern.png    (nền texture subtle)
+    - logo.png          (logo AERYMC)
+- Thay đổi nhanh: chỉnh biến CSS --accent, --accent-2, và text content trong <header> và các thẻ .server-ip
+- Nếu muốn chạy trên GitHub Pages: push file này vào repo (branch main) và bật Pages.
+- Giấy phép: bạn được dùng/tuỳ biến cho server AERYMC VN.
+-->
+
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AERYMC • Minecraft Server</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AERYMC VN — Minecraft Server</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(180deg, #150026, #1a002f, #000000);
-      color: white;
-      overflow-x: hidden;
+    :root{
+      --bg:#071018;
+      --card:#0d1416;
+      --muted:#9aa4a6;
+      --accent:#ffb237; /* vàng-cam */
+      --accent-2:#ff7a3d;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      font-family: 'Inter', system-ui, Arial, sans-serif;
+      color-scheme: dark;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background: transparent;background: url('https://i.ibb.co/TB8xBRMD/Chat-GPT-Image-Dec-9-2025-02-37-51-PM.png') center/cover fixed no-repeat;background-size:cover;color:#e7eef0;line-height:1.45}
+    .container{max-width:1200px;margin:0 auto;padding:28px}
 
-    header {
-      width: 100%;
-      padding: 25px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      backdrop-filter: blur(8px);
-      background: rgba(0, 0, 0, 0.25);
-      z-index: 100;
-    }
+    /* header */
+    header{backdrop-filter: blur(6px);background: transparent;border-bottom:1px solid rgba(255,255,255,0.03);} 
+    .nav{display:flex;align-items:center;gap:18px;padding:18px 0}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{box-shadow:0 0 18px rgba(255,200,80,0.9);border-radius:12px;animation:logoPop 1s ease forwards;width:48px;height:48px;object-fit:cover;border-radius:8px}
+    .nav-links{margin-left:18px;display:flex;gap:14px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .actions{margin-left:auto;display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:12px;font-weight:700;background: transparent;color:#081017;border:none;cursor:pointer;box-shadow:0 6px 22px rgba(255,122,61,0.08)}
+    .btn.ghost{background: transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 
-    header a {
-      text-decoration: none;
-      color: #c9a0ff;
-      font-weight: 600;
-      margin-left: 25px;
-    }
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:44px 0}
+    .hero-card{background: transparent;padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,0.03)}
+    .hero h1{font-size:42px;margin:0 0 12px;line-height:1.02}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .hero .quick{display:flex;gap:12px;margin-top:8px}
+    .socials{display:flex;gap:10px;margin-top:18px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background: transparent;border:1px solid rgba(255,255,255,0.02);text-decoration:none;color:var(--muted)}
 
-    .hero {
-      text-align: center;
-      padding-top: 140px;
-      padding-bottom: 150px;
-    }
+    .hero-visual{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .hero-visual img{width:100%;height:100%;display:block}
 
-    .hero h1 {
-      font-size: 60px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #c28cff, #9d5bff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .feature{background: transparent;padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .feature h4{margin:0 0 8px}
+    .feature p{color:var(--muted);margin:0}
 
-    .hero p {
-      font-size: 19px;
-      opacity: 0.8;
-      margin-top: -10px;
-    }
+    /* status */
+    .status{display:flex;gap:18px;margin-top:28px}
+    .status .box{flex:1;padding:18px;border-radius:12px;background: transparent;border:1px solid rgba(255,255,255,0.03)}
+    .players{font-size:34px;font-weight:800;color:var(--accent)}
+    .server-ip{color:var(--muted)}
 
-    .btn-main {
-      padding: 14px 35px;
-      background: #9d5bff;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 20px;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
-      box-shadow: 0 0 20px #9d5bff55;
-    }
+    /* news */
+    .news-grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:34px}
+    .news-main{background: transparent;padding:18px;border-radius:14px}
+    .news-main img{width:100%;height:320px;object-fit:cover;border-radius:10px}
+    .news-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+    .card-news{background: transparent;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
 
-    .section {
-      padding: 80px 10%;
-    }
+    /* footer */
+    footer{margin-top:48px;padding:28px;border-top:1px solid rgba(255,255,255,0.03)}
+    .footer-grid{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+    .footer .links a{display:block;color:var(--muted);text-decoration:none;margin-bottom:8px}
 
-    .section-title {
-      font-size: 36px;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 15px;
+    /* responsive */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .news-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
     }
+  .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background: transparent;pointer-events:none;z-index:-1;}
+/* TEXT GLOW STRONGER */
+* {
+  text-shadow: 0 0 10px #000, 0 0 18px rgba(255,255,255,0.2);
+}
 
-    .section-sub {
-      text-align: center;
-      opacity: 0.7;
-      font-size: 16px;
-      margin-bottom: 40px;
-    }
+h1, h2, h3, p, a, span {
+  text-shadow: 0 0 12px #000, 0 0 20px rgba(255,255,255,0.4) !important;
+}
 
-    .about-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-      flex-wrap: wrap;
-    }
+/* FULL GLASS BOXES FOR ALL CONTENT */
+section, .card, .news, .ranking, .hero-content, .status, .features, footer, .news-grid, .news-main, aside, .card-news, .footer-grid, .footer-new { 
+  background: rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 20px;
+}
+@keyframes logoPop{0%{transform:scale(0.6);opacity:0;}100%{transform:scale(1);opacity:1;}}
+</style>
+<style>
+/* Universal glass effect + glow + readability */
+* { text-shadow: 0 0 8px #000; }
+.glass {
+  background: rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(6px) !important;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+button, .btn {
+  color:#ffffff !important;
+  text-shadow:none !important;
+  box-shadow:0 0 18px rgba(255,200,80,0.7) !important;
+  transition:0.25s;
+}
+button:hover, .btn:hover {
+  box-shadow: 0 0 22px rgba(255,200,80,1);
+  transform: translateY(-2px);
+}
+section, .card, .container, header, footer, div {
+  background: rgba(0,0,0,0.55) !important;
+}
+</style>
+<style>
+/* Glow buttons stronger */
+button, .btn {
+  box-shadow: 0 0 18px rgba(255,200,80,0.7) !important;
+  transition: 0.25s;
+}
+button:hover, .btn:hover {
+  box-shadow: 0 0 30px rgba(255,220,120,1) !important;
+  transform: translateY(-3px);
+}
 
-    .about-box img {
-      width: 420px;
-      border-radius: 12px;
-      box-shadow: 0 0 25px #9d5bff33;
+/* Scroll animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+<script>
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
+  });
+});
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
+<style>
+/* --- NAVBAR FIXED GLASS --- */
+.navbar{position:fixed;top:0;left:0;width:100%;padding:15px 40px;z-index:999;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);display:flex;justify-content:space-between;align-items:center;}
+.navbar a{color:#fff;margin-right:20px;font-weight:bold;}
 
-    .about-text {
-      max-width: 500px;
-      line-height: 1.7;
-      opacity: 0.85;
-    }
+/* --- NEWS CARD UPGRADE --- */
+.card{transition:0.3s;border-radius:14px !important;background: rgba(0,0,0,0.55) !important;backdrop-filter:blur(8px) !important;border:1px solid rgba(255,255,255,0.2);} 
+.card:hover{transform:scale(1.03);box-shadow:0 0 20px rgba(255,255,255,0.4);} 
 
-    .features {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 50px;
-    }
+/* --- SLIDE EFFECTS --- */
+.slide-left{opacity:0;transform:translateX(-40px);transition:all .8s ease;} 
+.slide-right{opacity:0;transform:translateX(40px);transition:all .8s ease;} 
+.visible{opacity:1 !important;transform:translateX(0) !important;} 
 
-    .feature-item {
-      width: 30%;
-      min-width: 260px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #00000055;
-    }
-
-    .feature-item h3 {
-      margin: 0;
-      font-size: 22px;
-      color: #c28cff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.5;
-      font-size: 14px;
-    }
-  </style>
+/* --- FOOTER UPGRADE --- */
+.footer-new{margin-top:60px;padding:40px;background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);text-align:center;border-top:1px solid rgba(255,255,255,0.2);} 
+.footer-new p{color:#ccc;font-size:14px;} 
+</style>
+<script>
+// slide animations
+const obs2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});});
+window.onload=()=>{document.querySelectorAll('.slide-left,.slide-right').forEach(el=>obs2.observe(el));};
+</script>
 </head>
-
-<body>
-
-  <!-- NAV -->
+<body style="background: rgba(0,0,0,0.55) !important; color:#e7eef0;">
+<div class="overlay" style="background:rgba(0,0,0,0.75); backdrop-filter:blur(6px);"></div>
+<div class="overlay" style="background:rgba(0,0,0,0.75); backdrop-filter:blur(6px);"></div>
   <header>
-    <h2 style="color:#d9b7ff;">AERY<span style="color:#8c52ff;">MC</span></h2>
-    <nav>
-      <a href="#home">Trang chủ</a>
-      <a href="#about">Giới thiệu</a>
-      <a href="#features">Tính năng</a>
-      <a href="#connect">Tham gia</a>
-    </nav>
+    <div class="container nav">
+      <div class="logo">
+        <img src="https://i.ibb.co/7JXJ5L5Q/Chat-GPT-Image-Dec-9-2025-02-43-52-PM.png" alt="AERYMC logo">
+        <div>
+          <div style="font-weight:800">AERYMC <span style="color:var(--accent)">VN</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Minecraft Survival • Community</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Trang chủ</a>
+        <a href="#news">Tin tức</a>
+        <a href="#events">Sự kiện</a>
+        <a href="#guide">Hướng dẫn</a>
+      </nav>
+      <div class="actions">
+        <button class="btn">Tải Launcher</button>
+        <button class="btn ghost" onclick="openQR()">Nạp thẻ</button>
+      </div>
+    </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <h1>AERYMC MINECRAFT</h1>
-    <p>Máy chủ Minecraft sinh tồn – sự kiện – cộng đồng Việt Nam.</p>
-    <a class="btn-main" href="#">Tham Gia Ngay</a>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <h2 class="section-title">Giới Thiệu AERYMC</h2>
-    <p class="section-sub">Máy chủ Minecraft xây dựng hướng đến trải nghiệm ổn định – chất lượng – vui vẻ.</p>
-
-    <div class="about-box">
-      <img src="https://i.imgur.com/kVxQ4sM.png" alt="Minecraft Floating Island">
-
-      <div class="about-text">
-        <p>
-          AERYMC được tạo ra nhằm đem đến một thế giới Minecraft đầy sáng tạo, tính
-          năng đa dạng, sự kiện thú vị và cộng đồng thân thiện. Với sự đầu tư nghiêm
-          túc, chúng tôi hướng đến việc đem lại trải nghiệm tốt nhất cho người chơi.
-        </p>
-        <p>
-          Tham gia cùng bạn bè, xây dựng, sinh tồn và khám phá vô vàn tính năng mới
-          được cập nhật thường xuyên.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="section" id="features">
-    <h2 class="section-title">Tính Năng Nổi Bật</h2>
-    <p class="section-sub">Những điểm đặc biệt mà AERYMC mang đến cho bạn.</p>
-
-    <div class="features">
-      <div class="feature-item">
-        <h3>🎮 Gameplay Sinh Tồn</h3>
-        <p>Không pay-to-win, tối ưu mượt mà cho mọi người chơi.</p>
-      </div>
-
-      <div class="feature-item">
-        <h3>⚒️ Sự Kiện Hàng Tuần</h3>
-        <p>Event PvP – Build Battle – Hunt – Parkour liên tục.</p>
-      </div>
-
-      <div class="feature-item">
-        <h3>👥 Cộng Đồng Thân Thiện</h3>
-        <p>Staff hỗ trợ nhanh, người chơi hòa đồng, vui vẻ.</p>
-      </div>
-    </div>
-  </section>
-
-<section class="community-section">
-
-  <div class="community-box">
-
-    <h3 class="section-label">CỘNG ĐỒNG SÔI ĐỘNG</h3>
-    <h2 class="section-title">Kết nối Fanpage, Discord, TikTok, YouTube</h2>
-
-    <p class="section-desc">
-      Mỗi kênh là một phòng chức năng: thông báo hot trên fanpage, hỗ trợ & giải đáp nhanh ở Discord,
-      highlight PvP cực cháy trên TikTok và recap sự kiện qua YouTube.
-    </p>
-
-    <div class="community-grid">
-
-      <!-- Fanpage -->
-      <a href="https://facebook.com/aerymc" target="_blank" class="community-card">
-        <div class="circle-icon">
-          <i class="fa-brands fa-facebook-f"></i>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-size:12px;color:var(--accent);font-weight:700;padding:6px 10px;border-radius:999px;background: transparent;">AERYMC</div>
+          <div style="color:var(--muted);font-weight:600">Server Minecraft VN</div>
         </div>
-        <h4>Fanpage</h4>
-        <span>Thông báo & sự kiện nóng</span>
-      </a>
+        <h1>AERYMC — Khởi đầu hành trình Minecraft của bạn</h1>
+        <p>Chào mừng đến với AERYMC VN — server Minecraft Survival, Economy và Events. Kết nối cộng đồng, tham gia sự kiện hàng tuần, và xây dựng thế giới của riêng bạn.</p>
+        <div class="quick"></div>
 
-      <!-- Discord -->
-      <a href="https://discord.gg/aerymc" target="_blank" class="community-card">
-        <div class="circle-icon">
-          <i class="fa-brands fa-discord"></i>
+        <div class="features">
+          <div class="feature">
+            <h4>Roleplay & Survival</h4>
+            <p>Hệ thống nhiệm vụ, job, và rules nghiêm ngặt giữ trải nghiệm công bằng.</p>
+          </div>
+          <div class="feature">
+            <h4>Kinh tế mở</h4>
+            <p>Thương mại, cửa hàng, và marketplace do người chơi điều hành.</p>
+          </div>
+          <div class="feature">
+            <h4>Sự kiện hàng tuần</h4>
+            <p>Mini-games, PvP tournament, và event phát quà cho người chơi.</p>
+          </div>
         </div>
-        <h4>Discord</h4>
-        <span>Hỗ trợ nhanh & hướng dẫn</span>
-      </a>
 
-      <!-- YouTube -->
-      <a href="https://youtube.com/@aerymc" target="_blank" class="community-card">
-        <div class="circle-icon">
-          <i class="fa-brands fa-youtube"></i>
+        <div class="status">
+          <div class="box">
+            <div style="font-size:12px;color:var(--muted);">REAL-TIME STATUS</div>
+            <div class="players">57 <span style="font-size:14px;color:var(--muted);font-weight:600">/ 999</span></div>
+            <div class="server-ip">IP: <span class="server-ip" style="color:var(--accent)">play.aerymc.vn</span></div>
+          </div>
+          <div class="box">
+            <div style="font-size:12px;color:var(--muted);">Máy chủ</div>
+            <div style="font-weight:700;margin-top:8px">AERYMC Main (SURVIVAL)</div>
+            <div style="color:var(--muted);margin-top:8px">Reset & bảo trì theo lịch: Chủ nhật 03:00</div>
+          </div>
         </div>
-        <h4>YouTube</h4>
-        <span>Trailer & highlight</span>
-      </a>
 
-      <!-- TikTok -->
-      <a href="https://tiktok.com/@aerymc" target="_blank" class="community-card">
-        <div class="circle-icon">
-          <i class="fa-brands fa-tiktok"></i>
-        </div>
-        <h4>TikTok</h4>
-        <span>Highlight PvP cực cháy</span>
-      </a>
+        <div style="margin-top:18px">
+  <div style="font-size:12px;color:var(--accent);font-weight:800;margin-bottom:8px">CỘNG ĐỒNG SÔI ĐỘNG</div>
+  <h2 style="margin:0 0 8px">Kết nối Fanpage, Discord, TikTok, YouTube</h2>
+  <p style="color:var(--muted);margin:0 0 18px">Mỗi kênh là một phòng chức năng: thông báo, hướng dẫn, highlight PvP và recap sự kiện.</p>
 
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <div class="card" style="padding:18px;text-align:center;">
+      <div style="font-size:26px;">📢</div>
+      <div style="font-weight:700;margin-top:8px">Fanpage</div>
+      <div style="color:var(--muted);font-size:13px">Thông báo & sự kiện nóng</div>
     </div>
 
+    <div class="card" style="padding:18px;text-align:center;">
+      <div style="font-size:26px;">💬</div>
+      <div style="font-weight:700;margin-top:8px">Discord</div>
+      <div style="color:var(--muted);font-size:13px">Hướng dẫn & hỗ trợ nhanh</div>
+    </div>
+
+    <div class="card" style="padding:18px;text-align:center;">
+      <div style="font-size:26px;">▶️</div>
+      <div style="font-weight:700;margin-top:8px">YouTube</div>
+      <div style="color:var(--muted);font-size:13px">Trailer & recap highlight</div>
+    </div>
+
+    <div class="card" style="padding:18px;text-align:center;">
+      <div style="font-size:26px;">🎵</div>
+      <div style="font-weight:700;margin-top:8px">TikTok</div>
+      <div style="color:var(--muted);font-size:13px">Highlight PvP cực cháy</div>
+    </div>
+  </div>
+</div>
+
+
+
+          
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="https://i.ibb.co/m5mC4W4k/Chat-GPT-Image-Dec-9-2025-03-16-12-PM.png" alt="AERYMC hero">
+      </div>
+    </section>
+
+    <section class="news-grid" id="news">
+      <div class="news-main">
+        <div style="font-size:12px;color:var(--accent);font-weight:800;margin-bottom:8px">TIN TỨC</div>
+        <h2 style="margin:0 0 8px">Nhịp sống AERYMC</h2>
+        <p style="color:var(--muted);margin:0 0 12px">Cập nhật sự kiện, thông báo và bài viết mới nhất từ cộng đồng.</p>
+        <img src="https://i.ibb.co/ZRDHtG3J/258ec162-2bc6-48fe-bfb9-ae23a12d0750.png" alt="news" style="width:100%;height:320px;object-fit:cover;border-radius:12px;box-shadow:0 0 25px rgba(255,200,80,0.45);">
+        
+        <h3 style="margin-top:12px">Sự kiện TOP Streamer tháng — Giải thưởng hấp dẫn</h3>
+        <p style="color:var(--muted);margin-top:6px">Tham gia livestream, nhận quà và danh hiệu đặc biệt trong server.</p>
+        <div class="news-list">
+          <div class="card-news"><img src="images/news2.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px"><div style="font-weight:700;margin-top:8px">Sự kiện Top Donate</div></div>
+          <div class="card-news"><img src="images/news3.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px"><div style="font-weight:700;margin-top:8px">Top Cày ingame</div></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card-news" style="padding:18px;height:100%">
+          <div style="font-weight:700;margin-bottom:8px">Tin tức & Sự kiện</div>
+          <div style="color:var(--muted)">Các thông báo, sự kiện và cập nhật mới nhất sẽ được hiển thị tại đây.</div>
+
+          <!-- Giftcode Tân Thủ (VIP Neon Card) -->
+          <div class="card-news" 
+               style="padding:20px;margin-top:18px;border-radius:14px;background:rgba(0,0,0,0.65);backdrop-filter:blur(10px);border:1px solid rgba(255,200,80,0.45);box-shadow:0 0 22px rgba(255,200,80,0.55), inset 0 0 12px rgba(255,200,80,0.35);animation:glowPulse 2.2s infinite ease-in-out;">
+            <div style="font-weight:900;font-size:16px;margin-bottom:6px;color:#ffcc5c;">✨ 🎁 Giftcode Tân Thủ</div>
+            <div style="color:#ddd;font-size:14px;line-height:1.45;">Nhận ngay <b>gói quà khởi đầu</b> khi tham gia AERYMC — hỗ trợ tân thủ phát triển nhanh hơn!</div>
+          </div>
+        </div>
+      </aside>
+
+<style>
+@keyframes glowPulse {
+  0% { box-shadow:0 0 18px rgba(255,200,80,0.55), inset 0 0 10px rgba(255,200,80,0.25); }
+  50% { box-shadow:0 0 28px rgba(255,200,80,0.95), inset 0 0 16px rgba(255,200,80,0.45); }
+  100% { box-shadow:0 0 18px rgba(255,200,80,0.55), inset 0 0 10px rgba(255,200,80,0.25); }
+}
+</style>
+    </section>
+
+    <section id="events" style="margin-top:28px">
+      <h3 style="margin-bottom:12px">Phong cách chơi tại AERYMC</h3>
+      <div class="features">
+        <div class="feature"><h4>100% Việt Nam</h4><p class="muted">Cộng đồng thuần Việt, hỗ trợ 24/7 — BQT AERYMC đảm bảo trải nghiệm mượt mà và an toàn cho tất cả người chơi.</p></div>
+        <div class="feature"><h4>Kinh tế công bằng</h4><p class="muted">Mọi giao dịch minh bạch, không pay-to-win – ai cũng có cơ hội phát triển và làm giàu theo cách của mình.</p></div>
+        <div class="feature"><h4>Sự kiện & Prizes</h4><p class="muted">Sự kiện hàng tuần với quà tặng trong game.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><img src="https://i.ibb.co/7JXJ5L5Q/Chat-GPT-Image-Dec-9-2025-02-43-52-PM.png"" style="width:42px;height:42px;border-radius:8px"><div style="font-weight:800">AERYMC VN</div></div>
+          <p style="color:var(--muted);max-width:520px">Server Minecraft AERYMC VN — Survival, Economy, Events. Tham gia ngay để trải nghiệm và kết nối với cộng đồng.</p>
+          <div style="margin-top:14px" class="links">
+            <a href="#">Fanpage</a>
+            <a href="#">Discord</a>
+            <a href="#">Hướng dẫn</a>
+            <a href="#">Điều khoản</a>
+          </div>
+        </div>
+        <div>
+          <div style="background: transparent;padding:16px;border-radius:12px;text-align:center">
+            <div style="font-size:10px;font-weight:700">🚀 <span style="font-size:14px; font-weight:800;">SẴN SÀNG VÀO MÁY CHỦ</span></div>
+            <div style="font-weight:800;font-size:20px;margin:8px 0">Khởi động ngay – vào server & khám phá thế giới! 🌍</div>
+            <div style="display:flex;gap:10px;justify-content:center">
+              <button class="btn">Nạp & nhận quà</button>
+              <button class="btn ghost">Đăng ký nhanh</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;color:var(--muted);font-size:13px">©2025 AERYMC VN — Bản quyền thuộc AERYMC</div>
+    </footer>
+  </main>
+
+
+  <!-- QR MODAL SIÊU ĐẸP (GIAO DIỆN 2: NHẬP USERNAME TRƯỚC) -->
+<div id="qrModal" 
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+     background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); 
+     z-index:9999; justify-content:center; align-items:center; animation:fadeIn .25s ease;">
+  <div style="background:rgba(0,0,0,0.55); padding:26px; border-radius:18px; 
+              text-align:center; border:1px solid rgba(255,255,255,0.18);
+              box-shadow:0 0 35px rgba(255,200,80,0.55); 
+              max-width:360px; width:90%; animation:popUp .25s ease;">
+
+    <h2 style="margin-bottom:12px; font-size:20px; font-weight:800; color:#fff; text-shadow:0 0 12px rgba(255,200,80,0.8);">
+      Nạp Thẻ AERYMC<br><span style="font-size:14px;color:#ffb237;font-weight:700;">⭐ <b>ĐẶC BIỆT:</b> Bank (+10%)</span><br><span style="font-size:12px;color:#ffb237">(Có thể nạp trực tiếp trong game bằng lệnh /napthe)</span>
+    </h2>
+
+    <!-- INPUT USERNAME -->
+    <input id="usernameInput" type="text" placeholder="Nhập Username của bạn" 
+           style="width:100%; padding:10px; border-radius:10px; border:none; margin-bottom:14px; background:#111; color:#fff;">
+
+    <button class="btn" onclick="generateQR()" 
+            style="background:#ffb237; color:#000; font-weight:800; padding:10px 18px; border-radius:10px; width:100%; margin-bottom:14px;">
+      Tạo mã QR
+    </button>
+
+    <!-- QR ẨN TRƯỚC KHI NHẬP USERNAME -->
+    <div id="qrContent" style="display:none;">
+      <img id="qrImage" src="" style="width:100%; border-radius:14px; box-shadow:0 0 28px rgba(255,200,80,0.6);">
+
+      <div style="margin-top:18px; text-align:left; font-size:14px; line-height:1.4; color:#eee;">
+        <b>Ngân hàng:</b> Techcombank<br>
+        <b>Chủ tài khoản:</b> LE VAN HAO<br>
+        <b>Số tài khoản:</b> <span id="stk">19075494452015</span><br>
+        <b>Nội dung:</b> <span id="ndck">NAP AERYMC - Username</span>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px; justify-content:center;">
+        <button class="btn" onclick="copySTK()" 
+                style="background:#ffb237; color:#000; font-weight:800; padding:8px 16px; border-radius:10px;">
+          Copy STK
+        </button>
+        <button class="btn" onclick="copyND()" 
+                style="background:#ffb237; color:#000; font-weight:800; padding:8px 16px; border-radius:10px;">
+          Copy Nội dung
+        </button>
+      </div>
+    </div>
+
+    <button onclick="closeQR()" class="btn" 
+            style="margin-top:18px; background:#ff7a3d; color:#000; font-weight:800; padding:10px 22px; border-radius:10px; width:100%;">
+      Đóng
+    </button>
+  </div>
+</div>
+
+<script>
+function openQR(){ document.getElementById('qrModal').style.display='flex'; }
+function closeQR(){ document.getElementById('qrModal').style.display='none'; }
+function copySTK(){ navigator.clipboard.writeText(document.getElementById("stk").innerText); alert("Đã copy số tài khoản!"); }
+function copyND(){ navigator.clipboard.writeText(document.getElementById("ndck").innerText); alert("Đã copy nội dung chuyển khoản!"); }
+</script>
+<script>
+function openQR(){ document.getElementById('qrModal').style.display='flex'; }
+function closeQR(){ document.getElementById('qrModal').style.display='none'; }
+</script>
   </div>
 
-</section>
-
-
-  <footer>
-    © 2024 AERYMC • Designed for Minecraft VN Server
-  </footer>
-
+  <script>
+    document.querySelectorAll('.btn.ghost, .actions .btn.ghost').forEach(btn=>{
+      btn.onclick=()=>{
+        document.getElementById('qrModal').style.display='flex';
+      };
+    });
+  function generateQR(){
+  const user=document.getElementById('usernameInput').value.trim();
+  if(!user){alert('Bạn chưa nhập Username!');return;}
+  const nd=`NAP AERYMC - ${user}`;
+  document.getElementById('ndck').innerText=nd;
+  const qr=`https://img.vietqr.io/image/970407-19075494452015-compact.png?addInfo=${encodeURIComponent(nd)}`;
+  document.getElementById('qrImage').src=qr;
+  document.getElementById('qrContent').style.display='block';
+}
+</script>
 </body>
 </html>
