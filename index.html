@@ -1,109 +1,116 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AERYMC - Minecraft Server</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: url('https://wallpapercave.com/wp/wp2757874.png') no-repeat center/cover;
-            backdrop-filter: blur(3px);
-            color: white;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AERYMC - Diễn đàn Minecraft VN</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('https://i.imgur.com/9QvZqR7.jpeg') center/cover fixed;
+        color: #fff;
+    }
 
-        .header {
-            padding: 30px;
-            text-align: center;
-            background: rgba(0,0,0,0.45);
-        }
+    /* Thanh menu */
+    header {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .header h1 {
-            font-size: 48px;
-            margin: 0;
-            font-weight: 600;
-        }
+    .logo {
+        font-size: 28px;
+        font-weight: bold;
+    }
 
-        .header p {
-            font-size: 18px;
-            margin-top: 8px;
-        }
+    nav a {
+        color: #fff;
+        margin-left: 20px;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-        .btn-join {
-            margin-top: 15px;
-            display: inline-block;
-            padding: 12px 28px;
-            background: #4caf50;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-        }
+    /* Khung chính */
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        background: rgba(0,0,0,0.6);
+        padding: 25px;
+        border-radius: 10px;
+    }
 
-        .section {
-            margin: 40px auto;
-            width: 90%;
-            max-width: 900px;
-            background: rgba(0,0,0,0.55);
-            padding: 25px;
-            border-radius: 10px;
-        }
+    h2 {
+        margin-top: 0;
+        border-bottom: 2px solid #fff;
+        padding-bottom: 10px;
+    }
 
-        .section h2 {
-            margin-top: 0;
-            font-size: 28px;
-        }
+    /* Bài viết */
+    .post {
+        background: rgba(255,255,255,0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
 
-        .news-item {
-            background: rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
+    .post h3 { margin: 0; }
+    .post p { margin: 5px 0; }
 
-        .footer {
-            margin-top: 50px;
-            padding: 25px;
-            background: rgba(0,0,0,0.4);
-            text-align: center;
-        }
-    </style>
+    /* Footer */
+    footer {
+        margin-top: 40px;
+        padding: 20px;
+        text-align: center;
+        background: rgba(0,0,0,0.7);
+    }
+</style>
 </head>
+
 <body>
+<header>
+    <div class="logo">AERYMC</div>
+    <nav>
+        <a href="#">Trang chủ</a>
+        <a href="#">Sự kiện</a>
+        <a href="#">Hướng dẫn</a>
+        <a href="#">Diễn đàn</a>
+    </nav>
+</header>
 
-    <div class="header">
-        <h1>AERYMC</h1>
-        <p>Server Minecraft Survival Việt Nam</p>
-        <a class="btn-join" href="#">IP: aerymc.ml</a>
+<div class="container">
+    <h2>📢 Thông báo mới</h2>
+
+    <div class="post">
+        <h3>🔥 Mở server AERYMC - Survival 1.20.6</h3>
+        <p>Server chính thức khai mở lúc 19h ngày 10/12.</p>
     </div>
 
-    <div class="section">
-        <h2>📰 Tin Tức Mới</h2>
-        <div class="news-item">• Update shop mới – tối ưu giá trade.</div>
-        <div class="news-item">• Thêm khu event Tết 2025.</div>
-        <div class="news-item">• Fix lỗi chợ & tối ưu TPS.</div>
+    <div class="post">
+        <h3>🎉 Sự kiện: Đua top Level tháng 12</h3>
+        <p>Tham gia ngay để nhận nhiều phần quà hấp dẫn!</p>
     </div>
 
-    <div class="section">
-        <h2>👑 Ban Quản Trị</h2>
-        <p>• Owner: ChuVănBin</p>
-        <p>• Admin: (Tên)</p>
-        <p>• Mod: (Tên)</p>
+    <h2>💬 Danh mục diễn đàn</h2>
+
+    <div class="post">
+        <h3>📘 Thông báo từ BQT</h3>
+        <p>Cập nhật từ đội ngũ quản trị.</p>
     </div>
 
-    <div class="section">
-        <h2>🎮 Tham Gia Server</h2>
-        <p>• Phiên bản: 1.20.6</p>
-        <p>• IP Java: aerymc.ml</p>
-        <p>• IP Bedrock: Coming soon...</p>
+    <div class="post">
+        <h3>🛠 Hướng dẫn – Chia sẻ kinh nghiệm</h3>
+        <p>Tổng hợp bài viết từ cộng đồng.</p>
     </div>
 
-    <div class="footer">
-        © 2025 AERYMC - Minecraft Server Việt Nam
+    <div class="post">
+        <h3>❓ Hỏi đáp – Giải đáp thắc mắc</h3>
+        <p>Khu vực dành cho người chơi đặt câu hỏi.</p>
     </div>
+</div>
 
+<footer>© 2025 AERYMC - All Rights Reserved.</footer>
 </body>
 </html>
