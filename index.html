@@ -1,229 +1,223 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AERYMC - Minecraft Server</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AERYMC • Minecraft Server</title>
 
-<style>
-/* ===== RESET ===== */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d1117;
-  color: #fff;
-}
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-/* ===== NAVBAR ===== */
-.navbar {
-  width: 100%;
-  padding: 18px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
-  position: fixed;
-  top: 0;
-  z-index: 999;
-}
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 25px;
-  font-weight: bold;
-  transition: .2s;
-}
-.navbar a:hover {
-  color: #00c8ff;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #150026, #1a002f, #000000);
+      color: white;
+      overflow-x: hidden;
+    }
 
-/* ===== HERO ===== */
-.hero {
-  background: url('https://i.imgur.com/kQRhFzN.jpeg') center/cover no-repeat;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-  margin-top: 60px;
-}
-.hero h1 {
-  font-size: 52px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 15px #00eaff;
-}
-.hero p {
-  font-size: 18px;
-  margin-bottom: 25px;
-  opacity: .9;
-}
-.btn {
-  padding: 12px 25px;
-  background: #00c8ff;
-  color: #000;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: .2s;
-}
-.btn:hover {
-  background: #30e1ff;
-}
+    header {
+      width: 100%;
+      padding: 25px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 100;
+    }
 
-/* ===== ABOUT ===== */
-.about {
-  padding: 70px 10%;
-  background: #0f1623;
-}
-.about-box {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-}
-.about img {
-  width: 180px;
-  border-radius: 10px;
-  box-shadow: 0 0 25px rgba(0,200,255,.4);
-}
-.about h2 {
-  font-size: 32px;
-}
-.about p {
-  line-height: 1.7;
-  opacity: .9;
-}
+    header a {
+      text-decoration: none;
+      color: #c9a0ff;
+      font-weight: 600;
+      margin-left: 25px;
+    }
 
-/* ===== NEWS ===== */
-.news {
-  padding: 70px 10%;
-  background: #111827;
-}
-.news h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-.card {
-  background: #1c2432;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: .25s;
-}
-.card:hover {
-  transform: translateY(-6px);
-}
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-.card-content {
-  padding: 15px;
-}
-.card-content h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-.card-content p {
-  opacity: .85;
-}
+    .hero {
+      text-align: center;
+      padding-top: 140px;
+      padding-bottom: 150px;
+    }
 
-/* ===== FOOTER ===== */
-.footer {
-  padding: 25px;
-  background: #0d1117;
-  text-align: center;
-  opacity: .65;
-  font-size: 14px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-</style>
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #c28cff, #9d5bff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 19px;
+      opacity: 0.8;
+      margin-top: -10px;
+    }
+
+    .btn-main {
+      padding: 14px 35px;
+      background: #9d5bff;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 0 20px #9d5bff55;
+    }
+
+    .section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .section-sub {
+      text-align: center;
+      opacity: 0.7;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .about-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about-box img {
+      width: 420px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px #9d5bff33;
+    }
+
+    .about-text {
+      max-width: 500px;
+      line-height: 1.7;
+      opacity: 0.85;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-item {
+      width: 30%;
+      min-width: 260px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00000055;
+    }
+
+    .feature-item h3 {
+      margin: 0;
+      font-size: 22px;
+      color: #c28cff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.5;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo" style="font-size: 22px; font-weight: bold;">AERYMC</div>
-  <div>
-    <a href="#">Trang chủ</a>
-    <a href="#about">Giới thiệu</a>
-    <a href="#news">Tin tức</a>
-    <a href="#">Discord</a>
-  </div>
-</div>
+  <!-- NAV -->
+  <header>
+    <h2 style="color:#d9b7ff;">AERY<span style="color:#8c52ff;">MC</span></h2>
+    <nav>
+      <a href="#home">Trang chủ</a>
+      <a href="#about">Giới thiệu</a>
+      <a href="#features">Tính năng</a>
+      <a href="#connect">Tham gia</a>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>AERYMC NETWORK</h1>
-    <p>Server Minecraft Việt Nam • Nhiều chế độ chơi • Ổn định – Không Lag</p>
-    <a class="btn" href="#">COPY IP: aerymc.net</a>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <h1>AERYMC MINECRAFT</h1>
+    <p>Máy chủ Minecraft sinh tồn – sự kiện – cộng đồng Việt Nam.</p>
+    <a class="btn-main" href="#">Tham Gia Ngay</a>
+  </section>
 
-<!-- ABOUT -->
-<section id="about" class="about">
-  <div class="about-box">
-    <img src="https://i.imgur.com/ihU2rOV.png">
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <h2 class="section-title">Giới Thiệu AERYMC</h2>
+    <p class="section-sub">Máy chủ Minecraft xây dựng hướng đến trải nghiệm ổn định – chất lượng – vui vẻ.</p>
 
-    <div>
-      <h2>VỀ AERYMC</h2>
-      <p>
-        AERYMC là máy chủ Minecraft Việt Nam được phát triển với mục tiêu mang lại trải nghiệm 
-        chất lượng, ổn định và hấp dẫn. Chúng tôi liên tục cập nhật tính năng mới, tối ưu hiệu suất 
-        và mang đến môi trường giải trí lành mạnh cho cộng đồng người chơi.
-      </p>
-      <p>
-        Hiện tại server hỗ trợ: <b>SMP</b>, <b>Skyblock</b>, <b>Minigames</b> và nhiều chế độ 
-        đặc biệt đang trong quá trình hoàn thiện.
-      </p>
-    </div>
-  </div>
-</section>
+    <div class="about-box">
+      <img src="https://i.imgur.com/kVxQ4sM.png" alt="Minecraft Floating Island">
 
-<!-- NEWS -->
-<section id="news" class="news">
-  <h2>TIN TỨC MỚI</h2>
-  <div class="news-grid">
-
-    <div class="card">
-      <img src="https://i.imgur.com/zkXxq2s.jpeg">
-      <div class="card-content">
-        <h3>Khai mở máy chủ SMP</h3>
-        <p>AERYMC SMP chính thức mở cửa – tham gia ngay để nhận quà miễn phí!</p>
+      <div class="about-text">
+        <p>
+          AERYMC được tạo ra nhằm đem đến một thế giới Minecraft đầy sáng tạo, tính
+          năng đa dạng, sự kiện thú vị và cộng đồng thân thiện. Với sự đầu tư nghiêm
+          túc, chúng tôi hướng đến việc đem lại trải nghiệm tốt nhất cho người chơi.
+        </p>
+        <p>
+          Tham gia cùng bạn bè, xây dựng, sinh tồn và khám phá vô vàn tính năng mới
+          được cập nhật thường xuyên.
+        </p>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <img src="https://i.imgur.com/9fa3A8n.jpeg">
-      <div class="card-content">
-        <h3>Sự kiện tháng 12</h3>
-        <p>Đua top – nhận quà VIP và vật phẩm giới hạn.</p>
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <h2 class="section-title">Tính Năng Nổi Bật</h2>
+    <p class="section-sub">Những điểm đặc biệt mà AERYMC mang đến cho bạn.</p>
+
+    <div class="features">
+      <div class="feature-item">
+        <h3>🎮 Gameplay Sinh Tồn</h3>
+        <p>Không pay-to-win, tối ưu mượt mà cho mọi người chơi.</p>
+      </div>
+
+      <div class="feature-item">
+        <h3>⚒️ Sự Kiện Hàng Tuần</h3>
+        <p>Event PvP – Build Battle – Hunt – Parkour liên tục.</p>
+      </div>
+
+      <div class="feature-item">
+        <h3>👥 Cộng Đồng Thân Thiện</h3>
+        <p>Staff hỗ trợ nhanh, người chơi hòa đồng, vui vẻ.</p>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <img src="https://i.imgur.com/jRWxVbr.jpeg">
-      <div class="card-content">
-        <h3>Tuyển Staff</h3>
-        <p>Server đang mở đơn tuyển Builder, Moderator và Support.</p>
-      </div>
+  <!-- CONNECT -->
+  <section class="section" id="connect">
+    <h2 class="section-title">Kết Nối & Tham Gia</h2>
+    <p class="section-sub">Bạn chỉ cần 30s để gia nhập hành trình tại AERYMC.</p>
+
+    <div style="text-align:center;">
+      <a class="btn-main" href="#">IP: aerymc.vn</a><br><br>
+      <a class="btn-main" style="background:#5f3bc7;" href="#">Discord Server</a>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- FOOTER -->
-<div class="footer">
-  © 2025 AERYMC Network — Developed for Minecraft Community
-</div>
+  <footer>
+    © 2024 AERYMC • Designed for Minecraft VN Server
+  </footer>
 
 </body>
 </html>
