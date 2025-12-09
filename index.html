@@ -1,116 +1,195 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AERYMC - Diễn đàn Minecraft VN</title>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: url('https://i.imgur.com/9QvZqR7.jpeg') center/cover fixed;
-        color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERYMC - Minecraft Server</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: #fff;
+        }
 
-    /* Thanh menu */
-    header {
-        background: rgba(0, 0, 0, 0.7);
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        /* Header */
+        header {
+            background: #111;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .logo {
-        font-size: 28px;
-        font-weight: bold;
-    }
+        header .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #4fd1ff;
+        }
 
-    nav a {
-        color: #fff;
-        margin-left: 20px;
-        text-decoration: none;
-        font-weight: bold;
-    }
+        nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 15px;
+        }
 
-    /* Khung chính */
-    .container {
-        max-width: 1000px;
-        margin: 30px auto;
-        background: rgba(0,0,0,0.6);
-        padding: 25px;
-        border-radius: 10px;
-    }
+        nav a:hover {
+            color: #4fd1ff;
+        }
 
-    h2 {
-        margin-top: 0;
-        border-bottom: 2px solid #fff;
-        padding-bottom: 10px;
-    }
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 300px;
+            background-image: url('https://i.imgur.com/GgvJj6V.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #000;
+        }
 
-    /* Bài viết */
-    .post {
-        background: rgba(255,255,255,0.1);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
+        /* Layout */
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
 
-    .post h3 { margin: 0; }
-    .post p { margin: 5px 0; }
+        /* Main content */
+        .content {
+            width: 70%;
+        }
 
-    /* Footer */
-    footer {
-        margin-top: 40px;
-        padding: 20px;
-        text-align: center;
-        background: rgba(0,0,0,0.7);
-    }
-</style>
+        .card {
+            background: #2b2b2b;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: #4fd1ff;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 30%;
+        }
+
+        .side-box {
+            background: #2b2b2b;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .tag {
+            background: #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 3px;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            margin-top: 30px;
+        }
+    </style>
 </head>
-
 <body>
+
 <header>
     <div class="logo">AERYMC</div>
     <nav>
         <a href="#">Trang chủ</a>
-        <a href="#">Sự kiện</a>
-        <a href="#">Hướng dẫn</a>
-        <a href="#">Diễn đàn</a>
+        <a href="#">Nội quy</a>
+        <a href="#">Cộng đồng</a>
+        <a href="#">Bản đồ</a>
     </nav>
 </header>
 
-<div class="container">
-    <h2>📢 Thông báo mới</h2>
-
-    <div class="post">
-        <h3>🔥 Mở server AERYMC - Survival 1.20.6</h3>
-        <p>Server chính thức khai mở lúc 19h ngày 10/12.</p>
-    </div>
-
-    <div class="post">
-        <h3>🎉 Sự kiện: Đua top Level tháng 12</h3>
-        <p>Tham gia ngay để nhận nhiều phần quà hấp dẫn!</p>
-    </div>
-
-    <h2>💬 Danh mục diễn đàn</h2>
-
-    <div class="post">
-        <h3>📘 Thông báo từ BQT</h3>
-        <p>Cập nhật từ đội ngũ quản trị.</p>
-    </div>
-
-    <div class="post">
-        <h3>🛠 Hướng dẫn – Chia sẻ kinh nghiệm</h3>
-        <p>Tổng hợp bài viết từ cộng đồng.</p>
-    </div>
-
-    <div class="post">
-        <h3>❓ Hỏi đáp – Giải đáp thắc mắc</h3>
-        <p>Khu vực dành cho người chơi đặt câu hỏi.</p>
-    </div>
+<div class="banner">
+    Máy chủ Minecraft AERYMC
 </div>
 
-<footer>© 2025 AERYMC - All Rights Reserved.</footer>
+<div class="container">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="card">
+            <img src="https://i.imgur.com/lWkYB8X.jpeg">
+            <h2>✨ Ra mắt máy chủ Survival AERYMC</h2>
+            <p>Máy chủ mới với nhiều tính năng hấp dẫn, bản đồ đẹp, cộng đồng thân thiện...</p>
+            <a class="btn">Xem thêm</a>
+        </div>
+
+        <div class="card">
+            <img src="https://i.imgur.com/Fgg9lPi.jpeg">
+            <h2>📢 Tuyển Staff Quản Trị</h2>
+            <p>Hiện AERYMC đang tuyển thêm Moderator, Builder, Support...</p>
+            <a class="btn">Xem thêm</a>
+        </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="side-box">
+            <h3>Discord</h3>
+            <iframe src="https://discord.com/widget?id=11000000000000&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0"></iframe>
+        </div>
+
+        <div class="side-box">
+            <h3>Danh mục</h3>
+            <p>- Ra mắt</p>
+            <p>- Thông báo</p>
+            <p>- Sự kiện</p>
+        </div>
+
+        <div class="side-box">
+            <h3>Thẻ</h3>
+            <span class="tag">survival</span>
+            <span class="tag">event</span>
+            <span class="tag">update</span>
+            <span class="tag">staff</span>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    AERYMC © 2025 — Website chạy bởi GitHub Pages
+</footer>
+
 </body>
 </html>
