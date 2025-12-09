@@ -1,228 +1,121 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AERYMC - Minecraft Server</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            background: #0c0f14;
-            font-family: 'Poppins', sans-serif;
-            color: #d5e7ff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AERYMC SMP Việt Nam</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
 
-        /* HEADER GLASS */
-        header {
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(12px);
-            background: rgba(8, 11, 17, 0.65);
-            padding: 14px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #1a1e24;
-            z-index: 100;
-        }
+  <style>
+    body {
+      background: #0d0d12 url('https://i.imgur.com/yEXE8Mt.png') no-repeat center top fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #3bc8ff;
-            text-shadow: 0 0 10px #3bc8ff55;
-        }
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
-        nav a {
-            margin-left: 28px;
-            color: #b3c7db;
-            text-decoration: none;
-            font-size: 15px;
-            transition: 0.2s;
-        }
+    .btn-orange {
+      background: linear-gradient(90deg, #ff9900, #ff7f2a);
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
 
-        nav a:hover {
-            color: #3bc8ff;
-        }
+    .btn-orange:hover {
+      opacity: 0.8;
+    }
 
-        /* BANNER */
-        .banner {
-            width: 100%;
-            height: 320px;
-            background-image: url('https://i.imgur.com/NAXy1xD.jpeg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding: 35px;
-            color: #fff;
-            font-size: 34px;
-            font-weight: 600;
-            text-shadow: 0 0 12px #000;
-            border-bottom: 1px solid #1b1f26;
-        }
+    .card {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.2s;
+    }
 
-        /* PAGE LAYOUT */
-        .wrapper {
-            display: flex;
-            padding: 30px;
-            gap: 30px;
-        }
-
-        .content {
-            width: 68%;
-        }
-
-        .sidebar {
-            width: 32%;
-        }
-
-        /* POST STYLE – NEON */
-        .post {
-            background: #11141a;
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 28px;
-            border: 1px solid #1c2129;
-            transition: 0.25s;
-        }
-
-        .post:hover {
-            transform: translateY(-3px);
-            border-color: #3bc8ff;
-            box-shadow: 0 0 12px #3bc8ff44;
-        }
-
-        .post img {
-            width: 100%;
-            border-radius: 12px;
-        }
-
-        .post h2 {
-            margin-top: 12px;
-            margin-bottom: 6px;
-            font-size: 22px;
-            color: #e9f5ff;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 12px;
-            background: #3bc8ff;
-            color: #000;
-            font-weight: 600;
-            padding: 9px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-        }
-
-        /* SIDEBAR BOX */
-        .box {
-            background: #11141a;
-            border-radius: 14px;
-            padding: 20px;
-            border: 1px solid #1c2129;
-            margin-bottom: 25px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #1b212b;
-            padding: 7px 12px;
-            border-radius: 8px;
-            margin: 5px;
-            font-size: 13px;
-            color: #9ecff7;
-        }
-
-        footer {
-            background: #0a0c10;
-            padding: 30px;
-            text-align: center;
-            color: #657892;
-            margin-top: 35px;
-            border-top: 1px solid #1a1e24;
-        }
-    </style>
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #ffaa44;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo">AERYMC</div>
-    <nav>
-        <a href="#">Trang chủ</a>
-        <a href="#">Tin tức</a>
-        <a href="#">Cộng đồng</a>
-        <a href="#">Donate</a>
-    </nav>
-</header>
-
-<div class="banner">
-    AERYMC — Máy chủ Minecraft hiện đại, mượt nhẹ, chơi là nghiện!
-</div>
-
-<div class="wrapper">
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <div class="post">
-            <img src="https://i.imgur.com/1K26jgj.jpeg">
-            <h2>🔥 Ra mắt máy chủ AERYMC — Survival mùa mới!</h2>
-            <p>Máy chủ cập nhật hàng loạt tính năng mới, map build cực đẹp, ít lag, hỗ trợ tân thủ...</p>
-            <a class="btn" href="#">Xem chi tiết</a>
-        </div>
-
-        <div class="post">
-            <img src="https://i.imgur.com/XjeQ9HL.jpeg">
-            <h2>📢 Tuyển Staff AERYMC — Moderator • Builder • Support</h2>
-            <p>Tham gia đội ngũ BQT để xây dựng cộng đồng Minecraft lành mạnh và phát triển.</p>
-            <a class="btn" href="#">Ứng tuyển</a>
-        </div>
-
-        <div class="post">
-            <img src="https://i.imgur.com/EoCgk92.jpeg">
-            <h2>🎉 Sự kiện Tết 2025 — Quà miễn phí cho tất cả người chơi</h2>
-            <p>Đăng nhập nhận quà, sự kiện boss, nhiệm vụ đặc biệt, skin độc quyền...</p>
-            <a class="btn" href="#">Tham gia</a>
-        </div>
-
+  <!-- NAVBAR -->
+  <div class="w-full glass fixed top-0 left-0 z-50 px-8 py-4 flex justify-between items-center">
+    <div class="text-xl font-bold tracking-wide">
+      ⭐ AERYMC SMP VIỆT NAM
     </div>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-
-        <div class="box">
-            <h3>Discord</h3>
-            <iframe src="https://discord.com/widget?id=YOUR_ID&theme=dark"
-                width="100%" height="280" frameborder="0"></iframe>
-        </div>
-
-        <div class="box">
-            <h3>Danh mục</h3>
-            <p>- Tin tức</p>
-            <p>- Sự kiện</p>
-            <p>- Tuyển staff</p>
-            <p>- Update</p>
-        </div>
-
-        <div class="box">
-            <h3>Thẻ</h3>
-            <span class="tag">survival</span>
-            <span class="tag">event</span>
-            <span class="tag">staff</span>
-            <span class="tag">skyblock</span>
-            <span class="tag">update</span>
-        </div>
-
+    <div class="space-x-6 hidden md:block">
+      <a href="#" class="hover:text-orange-300">Trang chủ</a>
+      <a href="#" class="hover:text-orange-300">Tin tức</a>
+      <a href="#" class="hover:text-orange-300">Nạp tiền</a>
+      <a href="#" class="hover:text-orange-300">Câu hỏi</a>
     </div>
 
-</div>
+    <div class="space-x-3">
+      <button class="btn-orange">Đăng nhập</button>
+      <button class="btn-orange">Đăng ký</button>
+    </div>
+  </div>
 
-<footer>
-    © 2025 AERYMC — Website chính thức, phát triển bởi GitHub Pages.
-</footer>
+  <div class="pt-32 text-center">
+    <h1 class="text-4xl font-extrabold">MINECRAFT SMP VIỆT NAM</h1>
+    <p class="mt-4 text-gray-300 text-lg">Server sinh tồn Việt Nam – Cộng đồng thân thiện – Sự kiện mỗi tuần</p>
+
+    <div class="mt-6 space-x-4">
+      <button class="btn-orange">IP: play.aerymc.vn</button>
+      <button class="btn-orange">Tham Gia Discord</button>
+    </div>
+  </div>
+
+  <!-- FEATURE CARDS -->
+  <div class="max-w-6xl mx-auto mt-16 grid md:grid-cols-3 gap-6 px-6">
+
+    <div class="card p-5">
+      <img src="https://i.imgur.com/u0RFG2g.png" class="rounded-lg mb-3" />
+      <h2 class="text-xl font-bold">Sự Kiện Top Cày SMP</h2>
+      <p class="text-gray-300 mt-2">Đua top cày cuốc nhận quà Rank + Xu cực khủng.</p>
+    </div>
+
+    <div class="card p-5">
+      <img src="https://i.imgur.com/3swQy2O.png" class="rounded-lg mb-3" />
+      <h2 class="text-xl font-bold">Sự Kiện Donate</h2>
+      <p class="text-gray-300 mt-2">Top donate tháng nhận vật phẩm giới hạn và tag VIP.</p>
+    </div>
+
+    <div class="card p-5">
+      <img src="https://i.imgur.com/uq6ScsS.png" class="rounded-lg mb-3" />
+      <h2 class="text-xl font-bold">Server Luôn Ổn Định</h2>
+      <p class="text-gray-300 mt-2">Anti-cheat mạnh – Staff xử lý nhanh – Uptime 24/7.</p>
+    </div>
+
+  </div>
+
+  <!-- COMMUNITY -->
+  <div class="max-w-6xl mx-auto mt-20 px-6">
+    <h2 class="text-3xl font-bold mb-4">Cộng đồng AERYMC</h2>
+
+    <div class="grid md:grid-cols-4 gap-4">
+      <div class="card p-4 text-center">📘 Fanpage</div>
+      <div class="card p-4 text-center">💬 Discord</div>
+      <div class="card p-4 text-center">🎥 YouTube</div>
+      <div class="card p-4 text-center">🎵 TikTok</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-24 py-12 text-center glass">
+    <p class="text-gray-400">© 2025 AERYMC SMP – Thiết kế bởi bạn</p>
+  </footer>
 
 </body>
 </html>
