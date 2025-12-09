@@ -8,65 +8,66 @@
     <style>
         body {
             margin: 0;
-            background: #0e0f11;
+            background: #0c0f14;
             font-family: 'Poppins', sans-serif;
-            color: #e6e6e6;
+            color: #d5e7ff;
         }
 
         /* HEADER GLASS */
         header {
             position: sticky;
             top: 0;
-            backdrop-filter: blur(10px);
-            background: rgba(15, 18, 22, 0.7);
-            padding: 12px 25px;
+            backdrop-filter: blur(12px);
+            background: rgba(8, 11, 17, 0.65);
+            padding: 14px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #1f1f1f;
-            z-index: 99;
+            border-bottom: 1px solid #1a1e24;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
-            color: #4fd1ff;
-            text-shadow: 0 0 8px #4fd1ff88;
+            color: #3bc8ff;
+            text-shadow: 0 0 10px #3bc8ff55;
         }
 
         nav a {
-            margin-left: 25px;
-            color: #ccc;
+            margin-left: 28px;
+            color: #b3c7db;
             text-decoration: none;
             font-size: 15px;
+            transition: 0.2s;
         }
 
         nav a:hover {
-            color: #4fd1ff;
+            color: #3bc8ff;
         }
 
         /* BANNER */
         .banner {
             width: 100%;
-            height: 310px;
+            height: 320px;
             background-image: url('https://i.imgur.com/NAXy1xD.jpeg');
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid #222;
             display: flex;
             align-items: flex-end;
             padding: 35px;
+            color: #fff;
             font-size: 34px;
             font-weight: 600;
-            color: #fff;
-            text-shadow: 0 0 10px #000;
+            text-shadow: 0 0 12px #000;
+            border-bottom: 1px solid #1b1f26;
         }
 
-        /* LAYOUT */
+        /* PAGE LAYOUT */
         .wrapper {
             display: flex;
-            padding: 25px;
-            gap: 25px;
+            padding: 30px;
+            gap: 30px;
         }
 
         .content {
@@ -77,67 +78,71 @@
             width: 32%;
         }
 
-        /* BÀI VIẾT – KHÁC HOÀN TOÀN MINEVN */
+        /* POST STYLE – NEON */
         .post {
-            background: #17191d;
-            margin-bottom: 25px;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            transition: 0.2s;
+            background: #11141a;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 28px;
+            border: 1px solid #1c2129;
+            transition: 0.25s;
         }
 
         .post:hover {
             transform: translateY(-3px);
-            border-color: #4fd1ff;
+            border-color: #3bc8ff;
+            box-shadow: 0 0 12px #3bc8ff44;
         }
 
         .post img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         .post h2 {
-            margin: 12px 0 5px 0;
+            margin-top: 12px;
+            margin-bottom: 6px;
             font-size: 22px;
+            color: #e9f5ff;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 10px;
-            background: #4fd1ff;
-            padding: 8px 13px;
-            font-weight: 600;
-            border-radius: 8px;
+            margin-top: 12px;
+            background: #3bc8ff;
             color: #000;
+            font-weight: 600;
+            padding: 9px 15px;
+            border-radius: 8px;
             text-decoration: none;
         }
 
-        /* SIDEBAR MODULE */
+        /* SIDEBAR BOX */
         .box {
-            background: #17191d;
-            padding: 18px;
+            background: #11141a;
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #1c2129;
             margin-bottom: 25px;
-            border-radius: 12px;
-            border: 1px solid #222;
         }
 
         .tag {
-            background: #24272d;
-            padding: 7px 12px;
-            margin: 4px;
-            border-radius: 8px;
             display: inline-block;
+            background: #1b212b;
+            padding: 7px 12px;
+            border-radius: 8px;
+            margin: 5px;
             font-size: 13px;
+            color: #9ecff7;
         }
 
-        /* FOOTER */
         footer {
-            background: #0b0c0d;
-            padding: 25px;
+            background: #0a0c10;
+            padding: 30px;
             text-align: center;
-            margin-top: 30px;
-            color: #555;
+            color: #657892;
+            margin-top: 35px;
+            border-top: 1px solid #1a1e24;
         }
     </style>
 </head>
@@ -147,16 +152,77 @@
     <div class="logo">AERYMC</div>
     <nav>
         <a href="#">Trang chủ</a>
-        <a href="#">Nội quy</a>
+        <a href="#">Tin tức</a>
         <a href="#">Cộng đồng</a>
         <a href="#">Donate</a>
     </nav>
 </header>
 
 <div class="banner">
-    Máy chủ Minecraft AERYMC — Survival • Skyblock • Minigames
+    AERYMC — Máy chủ Minecraft hiện đại, mượt nhẹ, chơi là nghiện!
 </div>
 
 <div class="wrapper">
 
-    <!-- MAIN C
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="post">
+            <img src="https://i.imgur.com/1K26jgj.jpeg">
+            <h2>🔥 Ra mắt máy chủ AERYMC — Survival mùa mới!</h2>
+            <p>Máy chủ cập nhật hàng loạt tính năng mới, map build cực đẹp, ít lag, hỗ trợ tân thủ...</p>
+            <a class="btn" href="#">Xem chi tiết</a>
+        </div>
+
+        <div class="post">
+            <img src="https://i.imgur.com/XjeQ9HL.jpeg">
+            <h2>📢 Tuyển Staff AERYMC — Moderator • Builder • Support</h2>
+            <p>Tham gia đội ngũ BQT để xây dựng cộng đồng Minecraft lành mạnh và phát triển.</p>
+            <a class="btn" href="#">Ứng tuyển</a>
+        </div>
+
+        <div class="post">
+            <img src="https://i.imgur.com/EoCgk92.jpeg">
+            <h2>🎉 Sự kiện Tết 2025 — Quà miễn phí cho tất cả người chơi</h2>
+            <p>Đăng nhập nhận quà, sự kiện boss, nhiệm vụ đặc biệt, skin độc quyền...</p>
+            <a class="btn" href="#">Tham gia</a>
+        </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="box">
+            <h3>Discord</h3>
+            <iframe src="https://discord.com/widget?id=YOUR_ID&theme=dark"
+                width="100%" height="280" frameborder="0"></iframe>
+        </div>
+
+        <div class="box">
+            <h3>Danh mục</h3>
+            <p>- Tin tức</p>
+            <p>- Sự kiện</p>
+            <p>- Tuyển staff</p>
+            <p>- Update</p>
+        </div>
+
+        <div class="box">
+            <h3>Thẻ</h3>
+            <span class="tag">survival</span>
+            <span class="tag">event</span>
+            <span class="tag">staff</span>
+            <span class="tag">skyblock</span>
+            <span class="tag">update</span>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2025 AERYMC — Website chính thức, phát triển bởi GitHub Pages.
+</footer>
+
+</body>
+</html>
