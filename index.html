@@ -1,142 +1,452 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AERYMC Forum</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AERYMC — SMP Việt Nam</title>
 
-  <style>
-    body {
-      background: #0f0f14 url('https://i.imgur.com/MEqY9rl.png') no-repeat center top fixed;
-      background-size: cover;
-      font-family: Inter, sans-serif;
-      color: #e5e5e5;
-    }
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .glass {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+<style>
+  /* ---------- BASE ---------- */
+  :root{
+    --bg:#0b0d10;
+    --panel:#0f1418;
+    --muted:#97a1b3;
+    --accent:#3bc8ff;
+    --accent-2:#ffb84d;
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;
+    background: linear-gradient(180deg,#07080a 0%, #0b0d10 50%), url('https://i.imgur.com/yEXE8Mt.png') center top/cover fixed;
+    color:#e9f2ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+  }
 
-    .forum-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
-      transition: 0.15s;
-    }
+  a{color:inherit}
+  img{max-width:100%;display:block}
 
-    .forum-box:hover {
-      border-color: #ffae42;
-      transform: translateY(-3px);
-    }
-  </style>
+  /* ---------- HEADER ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:999;
+    padding:12px 26px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(180deg, rgba(9,11,13,0.6), rgba(12,14,17,0.45));
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo {
+    width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),#4bd1ff22);
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#031018;
+    box-shadow:0 6px 18px rgba(59,200,255,0.07);
+    font-size:18px;
+  }
+  .brand h1{margin:0;font-size:18px;letter-spacing:0.3px}
+  .nav{display:flex;gap:18px;align-items:center}
+  .nav a{padding:8px 10px;border-radius:10px;color:var(--muted);text-decoration:none;font-weight:600}
+  .nav a:hover{color:var(--accent);background:rgba(59,200,255,0.04)}
+
+  .cta {display:flex;gap:10px;align-items:center}
+  .btn {padding:9px 14px;border-radius:12px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,0.04)}
+  .btn-join {background:linear-gradient(90deg,var(--accent),#66e2ff);color:#04121a;border:none}
+  .btn-donate {background:linear-gradient(90deg,var(--accent-2),#ff9a44);color:#111}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{max-width:1200px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns: 1fr 340px;gap:28px}
+  @media (max-width:980px){ .wrap{grid-template-columns:1fr; padding:0 12px} .nav{display:none} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    border-radius:18px;
+    padding:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+    display:flex;gap:24px;align-items:center;
+    overflow:hidden;
+  }
+  .hero-left{flex:1}
+  .hero h2{margin:0;font-size:28px}
+  .meta{color:var(--muted);margin-top:8px}
+  .hero-actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+  .hero-graphic{width:360px;border-radius:14px; overflow:hidden; box-shadow: 0 20px 40px rgba(2,6,10,0.6);}
+  .hero-graphic img{display:block;height:100%;object-fit:cover}
+
+  /* ---------- NEWS GRID ---------- */
+  .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px}
+  @media (max-width:980px){ .news-grid{grid-template-columns:1fr} }
+  .card{
+    background:var(--panel);
+    border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,0.03);
+    transition:transform .18s, box-shadow .18s, border-color .18s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,0.5);border-color:rgba(59,200,255,0.12)}
+  .card-thumb{height:150px;border-radius:10px;overflow:hidden;margin-bottom:10px}
+  .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.04);color:var(--accent);font-weight:700;margin-bottom:8px;font-size:13px}
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar .panel{background:var(--panel);border-radius:14px;padding:14px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.03)}
+  .sidebar h4{margin:0 0 8px 0}
+  .discord-embed{height:220px;border-radius:10px;overflow:hidden;background:#060608;border:1px solid rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+
+  /* ---------- LEADERBOARD (simulated) ---------- */
+  .leaderboard {display:flex;flex-direction:column;gap:8px}
+  .lb-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;background:linear-gradient(90deg, rgba(59,200,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+  .lb-score{font-weight:800;color:var(--accent)}
+  .progress{height:6px;border-radius:999px;background:rgba(255,255,255,0.03);overflow:hidden}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#3bb0ff)}
+
+  /* ---------- FORUM STYLE ROWS ---------- */
+  .forum-section{margin-top:26px}
+  .forum-row{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);margin-bottom:10px}
+  .forum-title{font-weight:700}
+  .forum-meta{color:var(--muted);font-size:13px}
+
+  /* ---------- MODALS ---------- */
+  .modal-back{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(3,6,9,0.6);display:none;align-items:center;justify-content:center;z-index:1200}
+  .modal{width:460px;background:linear-gradient(180deg,#0b0f12, #0a0c0f);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+  .modal h3{margin:0 0 10px 0}
+  .input{width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:inherit;margin-bottom:10px}
+
+  /* ---------- FOOTER ---------- */
+  footer{margin-top:30px;padding:26px;text-align:center;color:var(--muted);font-size:14px}
+
+  /* small touches */
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+  .badge{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:700;color:var(--accent)}
+  .rounded {border-radius:12px}
+</style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="glass p-5 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-    <h1 class="text-xl font-semibold">⭐ AERYMC — Diễn Đàn Minecraft Việt Nam</h1>
-
-    <nav class="space-x-6 hidden md:block">
-      <a href="#" class="hover:text-yellow-300">Trang chủ</a>
-      <a href="#forum" class="hover:text-yellow-300">Diễn đàn</a>
-      <a href="#" class="hover:text-yellow-300">Sự kiện</a>
-      <a href="#" class="hover:text-yellow-300">Ủng hộ</a>
-    </nav>
-
+<!-- TOP NAV -->
+<div class="topbar">
+  <div class="brand">
+    <div class="logo">AM</div>
     <div>
-      <button class="px-4 py-2 rounded-lg bg-yellow-500 font-semibold">Đăng nhập</button>
+      <h1 style="margin:0;font-size:16px">AERYMC • SMP Việt Nam</h1>
+      <div class="muted small">Survival • Community • Events</div>
     </div>
-  </header>
-
-  <div class="pt-28 max-w-6xl mx-auto px-6">
-
-    <!-- WELCOME -->
-    <section class="text-center">
-      <h2 class="text-4xl font-bold">DIỄN ĐÀN CỘNG ĐỒNG SMP VIỆT NAM</h2>
-      <p class="mt-3 text-gray-300">
-        Trao đổi • Hướng dẫn • Sự kiện • Tuyển staff • Chia sẻ kinh nghiệm
-      </p>
-    </section>
-
-    <!-- FORUM CATEGORIES -->
-    <section id="forum" class="mt-12 grid md:grid-cols-3 gap-6">
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Thông báo quan trọng</h3>
-        <p class="text-gray-300 mt-2">Cập nhật phiên bản, sự kiện, bảo trì server…</p>
-      </div>
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Hướng dẫn người chơi</h3>
-        <p class="text-gray-300 mt-2">Tân thủ, cách kiếm tiền, lệnh cần biết…</p>
-      </div>
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Khu vực thảo luận</h3>
-        <p class="text-gray-300 mt-2">Góp ý – báo lỗi – nói chuyện chung.</p>
-      </div>
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Chợ mua bán</h3>
-        <p class="text-gray-300 mt-2">Mua bán đồ, giao dịch item, mở shop.</p>
-      </div>
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Giới thiệu bản thân</h3>
-        <p class="text-gray-300 mt-2">Khu vực làm quen, kết bạn, team-up.</p>
-      </div>
-
-      <div class="forum-box p-5">
-        <h3 class="text-xl font-bold text-yellow-300">Tuyển Staff</h3>
-        <p class="text-gray-300 mt-2">Ứng tuyển Helper / Mod / Builder.</p>
-      </div>
-
-    </section>
-
-    <!-- LATEST POSTS -->
-    <section class="mt-16">
-      <h2 class="text-3xl font-bold mb-6">📝 Bài viết mới nhất</h2>
-
-      <div class="space-y-4">
-
-        <div class="forum-box p-4 flex justify-between">
-          <div>
-            <h4 class="font-bold text-lg text-yellow-300">[EVENT] Đua top tháng 12</h4>
-            <p class="text-gray-400">Bởi <strong>Admin</strong> • 2 giờ trước</p>
-          </div>
-          <p class="text-gray-400">12 bình luận</p>
-        </div>
-
-        <div class="forum-box p-4 flex justify-between">
-          <div>
-            <h4 class="font-bold text-lg text-yellow-300">Tân thủ nên bắt đầu ở đâu?</h4>
-            <p class="text-gray-400">Bởi <strong>MinhG</strong> • 5 giờ trước</p>
-          </div>
-          <p class="text-gray-400">4 bình luận</p>
-        </div>
-
-        <div class="forum-box p-4 flex justify-between">
-          <div>
-            <h4 class="font-bold text-lg text-yellow-300">Mua gỗ thông giá tốt</h4>
-            <p class="text-gray-400">Bởi <strong>PhucMC</strong> • 1 ngày trước</p>
-          </div>
-          <p class="text-gray-400">7 bình luận</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="mt-20 mb-10 text-center text-gray-400 glass p-6 rounded-xl">
-      © 2025 — AERYMC Diễn Đàn Minecraft — Thiết kế bởi bạn
-    </footer>
-
   </div>
+
+  <div class="nav">
+    <a href="#">Trang chủ</a>
+    <a href="#news">Tin tức</a>
+    <a href="#forum">Diễn đàn</a>
+    <a href="#top">Bảng xếp hạng</a>
+    <a href="#donate">Ủng hộ</a>
+  </div>
+
+  <div class="cta">
+    <div class="badge">IP: play.aerymc.ml</div>
+    <button class="btn btn-join" id="openJoin">Tham gia</button>
+    <button class="btn btn-donate" id="openDonate">Nạp</button>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="wrap">
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="tag">MỞ MÁY CHỦ</div>
+        <h2>AERYMC — SMP VIỆT NAM • MÙA 01</h2>
+        <div class="meta">Chơi mượt, cộng đồng thân thiện, event hàng tuần. Phiên bản: 1.20.6</div>
+
+        <div class="hero-actions">
+          <button class="btn btn-join" onclick="copyIP()">Sao chép IP</button>
+          <a class="btn" href="#forum">Vào diễn đàn</a>
+          <a class="btn" href="#news">Xem tin</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:13px">
+          <strong>Live:</strong> <span id="liveCount">--</span> người đang online • <span id="uptime">Uptime 99.9%</span>
+        </div>
+      </div>
+
+      <div class="hero-graphic">
+        <!-- placeholder image, đổi thành ảnh riêng của bạn -->
+        <img src="https://i.imgur.com/NAXy1xD.jpeg" alt="banner">
+      </div>
+    </section>
+
+    <!-- NEWS + CARDS -->
+    <section id="news" style="margin-top:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Tin tức & Sự kiện</h3>
+        <div class="small muted">Cập nhật mới nhất</div>
+      </div>
+
+      <div class="news-grid">
+        <!-- card 1 -->
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://i.imgur.com/1K26jgj.jpeg" alt="">
+          </div>
+          <div class="tag">RA MẮT</div>
+          <h4 style="margin:8px 0 4px 0">🔥 Ra mắt AERYMC SMP - Season 01</h4>
+          <div class="muted small">17/12/2025 • bởi ChuVănBin</div>
+          <p class="small muted" style="margin-top:8px">Bản đồ mới, bảo mật, anti-cheat, sự kiện tặng đồ khi đăng nhập.</p>
+          <div style="margin-top:10px"><a class="btn" href="#">Xem chi tiết</a></div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://i.imgur.com/XjeQ9HL.jpeg" alt="">
+          </div>
+          <div class="tag">SỰ KIỆN</div>
+          <h4 style="margin:8px 0 4px 0">🎉 Đua Top Cày - Tháng 12</h4>
+          <div class="muted small">10/12/2025 • bởi Team</div>
+          <p class="small muted" style="margin-top:8px">Top 1 nhận rank + tiền in-game, top 2-3 nhận vật phẩm hữu hạn.</p>
+          <div style="margin-top:10px"><a class="btn" href="#">Tham gia</a></div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://i.imgur.com/EoCgk92.jpeg" alt="">
+          </div>
+          <div class="tag">TỐI ƯU</div>
+          <h4 style="margin:8px 0 4px 0">🛠 Bản cập nhật tối ưu TPS</h4>
+          <div class="muted small">02/12/2025 • bởi Admin</div>
+          <p class="small muted" style="margin-top:8px">Tối ưu plugin, giảm lag vùng spawn, fix lỗi shop.</p>
+          <div style="margin-top:10px"><a class="btn" href="#">Changelog</a></div>
+        </article>
+
+        <!-- card 4 -->
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://i.imgur.com/lWkYB8X.jpeg" alt="">
+          </div>
+          <div class="tag">THÔNG BÁO</div>
+          <h4 style="margin:8px 0 4px 0">📢 Tuyển Helper & Builder</h4>
+          <div class="muted small">05/12/2025 • bởi BQT</div>
+          <p class="small muted" style="margin-top:8px">Ứng tuyển nhanh, thử việc 7 ngày, hỗ trợ online shift.</p>
+          <div style="margin-top:10px"><a class="btn" href="#">Ứng tuyển</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FORUM PREVIEW -->
+    <section id="forum" class="forum-section">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Diễn đàn nhanh</h3>
+        <div class="small muted">Thảo luận & hỗ trợ</div>
+      </div>
+
+      <div style="margin-top:12px">
+        <div class="forum-row">
+          <div>
+            <div class="forum-title">📣 Thông báo từ BQT</div>
+            <div class="forum-meta">Các thông tin chính thức, bảo trì, cập nhật</div>
+          </div>
+          <div class="muted small">3 chủ đề • 12 trả lời</div>
+        </div>
+
+        <div class="forum-row">
+          <div>
+            <div class="forum-title">❓ Hỏi đáp - Hỗ trợ</div>
+            <div class="forum-meta">Lỗi kết nối, hướng dẫn cài mod/launcher</div>
+          </div>
+          <div class="muted small">12 chủ đề • 43 trả lời</div>
+        </div>
+
+        <div class="forum-row">
+          <div>
+            <div class="forum-title">🏷️ Giao dịch & Chợ</div>
+            <div class="forum-meta">Mua bán vật phẩm, đặt hàng</div>
+          </div>
+          <div class="muted small">9 chủ đề • 25 trả lời</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <!-- LIVE STATUS -->
+    <div class="panel">
+      <h4 style="margin:4px 0 10px 0">Trạng thái máy chủ</h4>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="small muted">Server</div>
+          <div style="font-weight:800;font-size:20px">AERYMC • SMP</div>
+        </div>
+        <div style="text-align:right">
+          <div id="onlineNum" style="font-size:20px;font-weight:800">--</div>
+          <div class="small muted">online</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <div class="small muted">Sử dụng CPU</div>
+        <div class="progress" style="margin-top:8px"><i style="width:42%"></i></div>
+      </div>
+    </div>
+
+    <!-- DISCORD -->
+    <div class="panel">
+      <h4 style="margin:4px 0 10px 0">Discord</h4>
+      <div class="discord-embed">
+        <!-- Replace src with your discord widget -->
+        <div style="text-align:center">
+          <div style="font-weight:700;color:var(--accent)">Discord AERYMC</div>
+          <div class="muted small" style="margin-top:8px">Kết nối & chat với cộng đồng</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="panel">
+      <h4 style="margin:4px 0 10px 0">Bảng xếp hạng (Realtime)</h4>
+      <div class="leaderboard" id="leaderboard">
+        <!-- rows injected by JS -->
+      </div>
+      <div style="margin-top:10px;text-align:center">
+        <a class="btn" href="#top">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <!-- TAGS -->
+    <div class="panel">
+      <h4 style="margin:4px 0 10px 0">Thẻ</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <div class="tag">survival</div>
+        <div class="tag">event</div>
+        <div class="tag">donate</div>
+        <div class="tag">build</div>
+        <div class="tag">help</div>
+      </div>
+    </div>
+
+  </aside>
+
+</div> <!-- wrap end -->
+
+<!-- FOOTER -->
+<footer>
+  AERYMC • SMP Vietnam — © 2025 • Thiết kế UI bởi ChatGPT helper. IP: play.aerymc.ml
+</footer>
+
+<!-- ---------- MODALS ---------- -->
+<div class="modal-back" id="modalBack">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="modalTitle">Modal</h3>
+    <div id="modalBody">
+      <p>—</p>
+    </div>
+
+    <div style="margin-top:12px;text-align:right">
+      <button class="btn" id="modalClose">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<!-- JOIN / DONATE modals content prefilled by JS -->
+
+<script>
+/* ---------- Simple dynamic demo (no backend) ---------- */
+
+/* copy ip */
+function copyIP(){
+  navigator.clipboard?.writeText('play.aerymc.ml').then(()=>{ alert('IP đã được sao chép: play.aerymc.ml') }, ()=>{ alert('Không copy được, hãy copy thủ công: play.aerymc.ml') })
+}
+
+/* open modal helpers */
+const modalBack = document.getElementById('modalBack')
+const modalTitle = document.getElementById('modalTitle')
+const modalBody = document.getElementById('modalBody')
+const modalClose = document.getElementById('modalClose')
+function openModal(title, html){
+  modalTitle.textContent = title
+  modalBody.innerHTML = html
+  modalBack.style.display = 'flex'
+}
+modalClose.onclick = ()=> modalBack.style.display='none'
+modalBack.onclick = (e)=> { if(e.target===modalBack) modalBack.style.display='none' }
+
+/* Join / donate buttons */
+document.getElementById('openJoin').addEventListener('click', ()=> {
+  openModal('Tham gia AERYMC','<p>Hướng dẫn tham gia server:</p><ol><li>Mở Minecraft phiên bản <strong>1.20.6</strong></li><li>Vào &gt; <code>Direct Connect</code> gõ <strong>play.aerymc.ml</strong></li><li>Nếu cần launcher, tải tại mục download</li></ol>')
+})
+
+document.getElementById('openDonate').addEventListener('click', ()=> {
+  openModal('Nạp ủng hộ (UI demo)', '<p>Hiện tại chúng tôi hỗ trợ nạp qua Momo/QR/Bank (UI demo)</p><div style="display:flex;gap:8px;flex-wrap:wrap"><div style="flex:1"><strong>Momo:</strong><div class="small muted">Số: 0123456789</div></div><div style="flex:1"><strong>Bank:</strong><div class="small muted">Ngân hàng XYZ</div></div></div><p class="muted small" style="margin-top:8px">* Đây là giao diện demo. Hệ thống thanh toán cần backend để chạy thực tế.</p>')
+})
+
+/* simulate live and leaderboard */
+const liveCountEl = document.getElementById('liveCount')
+const onlineNumEl = document.getElementById('onlineNum')
+const leaderboardEl = document.getElementById('leaderboard')
+
+let online = 34
+const players = [
+  {name:'Kaito',score:1580},
+  {name:'Luna',score:1420},
+  {name:'MinhPro',score:1360},
+  {name:'Haooo',score:1200},
+  {name:'Zeron',score:1020},
+]
+
+function renderLive(){
+  online = Math.max(3, Math.round(online + (Math.random()-0.45)*6))
+  liveCountEl.textContent = online + ' đang online'
+  onlineNumEl.textContent = online
+}
+function renderLeaderboard(){
+  leaderboardEl.innerHTML = ''
+  // sort copy for demo
+  const arr = players.slice().sort((a,b)=>b.score-a.score)
+  arr.forEach((p,idx)=>{
+    const max = arr[0].score
+    const ratio = Math.round((p.score/max)*100)
+    const row = document.createElement('div'); row.className='lb-row'
+    row.innerHTML = `<div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg, #3bc8ff, #8be6ff);display:flex;align-items:center;justify-content:center;color:#021418;font-weight:800">${idx+1}</div><div><div style="font-weight:700">${p.name}</div><div class="small muted">Score: ${p.score}</div></div></div><div style="text-align:right"><div class="lb-score">${p.score}</div><div style="width:130px;margin-top:6px" class="progress"><i style="width:${ratio}%"></i></div></div>`
+    leaderboardEl.appendChild(row)
+  })
+}
+
+/* update loop */
+renderLive(); renderLeaderboard()
+setInterval(()=>{ renderLive(); }, 3000)
+setInterval(()=>{ // simulate small score changes
+  players.forEach(p => p.score += Math.round((Math.random()-0.4)*12))
+  renderLeaderboard()
+}, 5000)
+
+/* basic route-like anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    e.preventDefault(); const id=a.getAttribute('href').slice(1)
+    if(!id) return window.scrollTo({top:0,behavior:'smooth'})
+    const el=document.getElementById(id)
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'})
+  })
+})
+
+/* On load show quick guide if first time */
+if(!localStorage.getItem('aery_welcome')){
+  setTimeout(()=> openModal('Chào mừng tới AERYMC!', '<p>Server demo sẵn sàng. Đây là giao diện tĩnh (GitHub Pages). Bạn có thể yêu cầu mình tích hợp thêm: <strong>bảng top nạp</strong>, <strong>đăng nhập OAuth</strong>, <strong>nạp thẻ realtime</strong> nếu bạn có backend.</p>'), 800)
+  localStorage.setItem('aery_welcome','1')
+}
+</script>
 
 </body>
 </html>
